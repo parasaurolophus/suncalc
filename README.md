@@ -95,12 +95,12 @@ Returns an object with the following properties:
 
 To further elucidate, note that the formal definition of radians is
 
-$$1 \text{rad} = {{2 \pi r} \over r}$$
+$$1 \textbf{ rad} = {{2 \pi r} \over r}$$
 
 for a circle whose radius is $r$. I.e. 1 rad is the angle subtended by an arc whose length is equal
 to the radius of a given circle. Such a radius is implicitly assumed to be 1 when saying things like
 
-$$90^\circ = {\pi \over 2} \text{rad}$$
+$$90^\circ = {\pi \over 2} \textbf{ rad}$$
 
 This library applies an adjustment (fairly common in astronomy and navigation) such that the sun's
 azimuth does not range from $0$ to $2 \pi$ as is implied by the preceding definition of radians.
@@ -130,8 +130,8 @@ let degrees = radians * DEGREES
 In other words, the ordinary mathematical value for `position.azimuth` as a positive angle in radians
 can be obtained by first adding `Math.PI` to the value reported by this library. It is by virtue of
 such an implicit conversion that it is stated, above, that ${\pi {3 \over 4}}$ is equivalent to
-"northwest." Otherwise, one would have been justified in assuming that "northwest" should be equivalent
-to ${{2 \pi} {7 \over 8}}$.
+"northwest." (Otherwise, one would have been justified in assuming that "northwest" should be equivalent
+to ${{2 \pi} {7 \over 8}}$.)
 
 
 ### Moon position
