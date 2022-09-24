@@ -95,16 +95,16 @@ Returns an object with the following properties:
 
 To further elucidate, note that the formal definition of radians is
 
-$$1 \; \text{rad} = {{2 \pi r} \over r}$$
+$$1 \text{rad} = {{2 \pi r} \over r}$$
 
 for a circle whose radius is $r$. I.e. 1 rad is the angle subtended by an arc whose length is equal
 to the radius of a given circle. Such a radius is implicitly assumed to be 1 when saying things like
 
-$$90^\circ = {\pi \over 2} \; \text{rad}$$
+$$90^\circ = {\pi \over 2} \text{rad}$$
 
 This library applies an adjustment (fairly common in astronomy and navigation) such that the sun's
 azimuth does not range from $0$ to $2 \pi$ as is implied by the preceding definition of radians.
-Instead, the sun's azimuth is reported as ranging from $- \pi$ (due north), through $0$ (due south)
+Instead, the sun's azimuth is reported as ranging from $-\pi$ (due north), through $0$ (due south)
 and finally through $\pi$ (back to north). A negative azimuth implies that the sun is in the eastern
 half of the sky, a positive azimuth implies that the sun appears to the west. This makes it easy,
 for example, to distinguish "morning" from "afternoon" simply by the sign of the azimuth but creates
