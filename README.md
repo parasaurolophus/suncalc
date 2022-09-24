@@ -93,6 +93,46 @@ Returns an object with the following properties:
  * `azimuth`: sun azimuth in radians (direction along the horizon, measured from south to west),
  e.g. `0` is south and `Math.PI * 3/4` is northwest
 
+To further elucidate, note that the formal definition of radians is
+
+$$1 \; \text{rad} = {{2 \pi r} \over r}$$
+
+for a circle whose radius is $r$. I.e. 1 rad is the angle subtended by an arc whose length is equal
+to the radius of a given circle. Such a radius is implicitly assumed to be 1 when saying things like
+
+$$90^\circ = {\pi \over 2} \; \text{rad}$$
+
+This library applies an adjustment (fairly common in astronomy and navigation) such that the sun's
+azimuth does not range from $0$ to $2 \pi$ as is implied by the preceding definition of radians.
+Instead, the sun's azimuth is reported as ranging from $- \pi$ (due north), through $0$ (due south)
+and finally through $\pi$ (back to north). A negative azimuth implies that the sun is in the eastern
+half of the sky, a positive azimuth implies that the sun appears to the west. This makes it easy,
+for example, to distinguish "morning" from "afternoon" simply by the sign of the azimuth but creates
+complications when performing calculations or comparisons to data reported from other sources,
+especially when expressed in different units. The following snippet will convert an astronomical
+azimuth as reported by this library to a number of decimal degrees as it might appear on a
+terrestrial compass:
+
+```javascript
+let position = SunCalc.getPosition(dateAndTime, latitude, longitude)
+
+// degrees per radian
+const DEGREES = 360 / (2 * Math.PI)
+
+// adjust angles reported by suncalc
+// from -pi - pi to 0 - 2pi
+let radians = position.azimuth + Math.PI
+
+// convert from radians to degrees
+let degrees = radians * DEGREES
+```
+
+In other words, the ordinary mathematical value for `position.azimuth` as a positive angle in radians
+can be obtained by first adding `Math.PI` to the value reported by this library. It is by virtue of
+such an implicit conversion that it is stated, above, that ${\pi {3 \over 4}}$ is equivalent to
+"northwest." Otherwise, one would have been justified in assuming that "northwest" should be equivalent
+to ${{2 \pi} {7 \over 8}}$.
+
 
 ### Moon position
 
